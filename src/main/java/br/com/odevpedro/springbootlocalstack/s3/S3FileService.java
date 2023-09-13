@@ -5,7 +5,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import io.awspring.cloud.core.io.s3.PathMatchingSimpleStorageResourcePatternResolver;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.core.ApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -40,7 +40,7 @@ public class S3FileService {
     @Autowired
     public void setupResolver(ApplicationContext applicationContext, AmazonS3 amazonS3) {
         this.resourcePatternResolver = new PathMatchingSimpleStorageResourcePatternResolver(amazonS3,
-                (ResourcePatternResolver) applicationContext);
+                applicationContext);
     }
 
     public boolean isFileExists(String file) {

@@ -17,7 +17,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 @Slf4j
 @Controller
@@ -39,7 +38,7 @@ public class S3Controller {
 
             fileService.saveFile(Files.newInputStream(tempFile), tempFile.toFile().getName());
         } catch (Exception ex) {
-            
+
             log.error(ex.getMessage(), ex);
             return new ResponseEntity<>(S3FileDTO.getInstance(ex.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
